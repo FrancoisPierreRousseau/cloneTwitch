@@ -1,32 +1,65 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <NavBar/>
+    <div class="app">
+      <Sidebar/>
+      <div class="body">
+        <div class="body--left">
+          <router-view :key="$route.path"/>
+        </div>
+      </div>
     </div>
-    <router-view />
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+* {
+  color: white;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+code {
+  font-family: "Source Code Pro", sans-serif;
 }
+
+.app {
+  display: flex;
+}
+
+.body {
+  background-color: #0e0e10;
+  flex: 1;
+  display: flex;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.body--left {
+  width: 100%;
+  height: 100%;
+}
+
+#twitch-embed iframe{
+  height: 500px !important;
+}
+
 </style>
+
+<script>
+import NavBar from "@/components/layouts/NavBar";
+import Sidebar from "@/components/layouts/Sidebar";
+
+export default {
+  components: {Sidebar, NavBar}
+}
+</script>
